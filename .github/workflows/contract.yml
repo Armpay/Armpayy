@@ -1,0 +1,24 @@
+name: Contract
+
+on:
+  push:
+    paths: ["contract/**"]
+  pull_request:
+    paths: ["contract/**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contract
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32v1-none
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: contract
+      - run: cargo test
+      - run: cargo build --target wasm32v1-none --release
