@@ -48,6 +48,15 @@ impl ArmpayContract {
         storage::write_invoice(&env, id, &invoice);
         storage::extend_instance(&env);
 
+        events::InvoiceCreated {
+            id,
+            creator,
+            recipient,
+            amount,
+            deadline,
+        }
+        .publish(&env);
+
         Ok(id)
     }
 }
