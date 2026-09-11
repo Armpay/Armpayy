@@ -102,6 +102,18 @@ impl ArmpayContract {
         }
         .publish(&env);
 
+        if funded == invoice.amount {
+            token.transfer(&escrow, &invoice.recipient, &invoice.amount);
+            invoice.status = InvoiceStatus::Paid;
+
+            events::InvoicePaid {
+                id: invoice_id,
+                recipient: invoice.recipient.clone(),
+                amount: invoice.amount,
+            }
+            .publish(&env);
+        }
+
         storage::write_invoice(&env, invoice_id, &invoice);
         storage::extend_instance(&env);
 
