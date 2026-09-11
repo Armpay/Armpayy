@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { WalletProvider } from "@/components/wallet/wallet-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,9 +37,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="relative isolate min-h-full flex flex-col font-sans">
         <div aria-hidden className="bg-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[48rem]" />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <WalletProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </WalletProvider>
       </body>
     </html>
   );
