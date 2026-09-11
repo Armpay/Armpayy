@@ -58,7 +58,7 @@ contracts/
 └── policy/          # Reusable auth rules (limits, timelocks) shared with the smart-wallet layer.
 ```
 
-> **Current state:** the repo ships an early single-crate contract in `contracts/armpay` (group + role anchoring) that is being refactored toward the layout above. Treat the module split as the target design.
+> **Current state:** the repo ships an early single-crate contract in `contract/` (group + role anchoring) that is being refactored toward the layout above. Treat the module split as the target design.
 
 ---
 
