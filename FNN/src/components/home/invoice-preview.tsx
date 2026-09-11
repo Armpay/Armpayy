@@ -92,7 +92,7 @@ export function InvoicePreview() {
         </div>
       </div>
 
-      <div className="animate-float absolute -top-4 -right-2 hidden items-center gap-2 rounded-2xl border border-white/10 bg-surface-strong/90 px-3 py-2 text-xs shadow-xl backdrop-blur sm:flex">
+      <div className="animate-float absolute -top-8 right-6 hidden items-center gap-2 rounded-2xl border border-white/10 bg-surface-strong/90 px-3 py-2 text-xs shadow-xl backdrop-blur sm:flex">
         <span className="grid h-5 w-5 place-items-center rounded-full bg-success/15 text-success">
           <CheckIcon width={12} height={12} />
         </span>
