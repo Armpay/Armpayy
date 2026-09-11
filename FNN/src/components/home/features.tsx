@@ -27,7 +27,7 @@ function FeatureCard({ icon, title, body, className = "", children }: FeatureCar
         aria-hidden
         className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full bg-brand/15 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
       />
-      <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-brand">
+      <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/4 text-brand">
         {icon}
       </span>
       <h3 className="mt-5 font-medium">{title}</h3>
@@ -92,13 +92,15 @@ export function Features() {
             body="Split one invoice across many payers. Each funds their own share and tracks progress in real time."
           >
             <div className="mt-6 flex items-center">
-              {avatars.map((gradient) => (
-                <span
-                  key={gradient}
-                  aria-hidden
-                  className={`-ml-2 h-9 w-9 rounded-full border-2 border-surface bg-linear-to-br first:ml-0 ${gradient}`}
-                />
-              ))}
+              <div className="flex -space-x-2">
+                {avatars.map((gradient) => (
+                  <span
+                    key={gradient}
+                    aria-hidden
+                    className={`h-9 w-9 rounded-full border-2 border-surface bg-linear-to-br ${gradient}`}
+                  />
+                ))}
+              </div>
               <span className="ml-3 text-xs text-muted">+ anyone with a Stellar wallet</span>
             </div>
           </FeatureCard>

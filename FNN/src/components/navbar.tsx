@@ -87,7 +87,7 @@ export function Navbar() {
                     aria-current={isActive ? "true" : undefined}
                     className={`rounded-full px-3.5 py-1.5 transition-colors ${
                       isActive
-                        ? "bg-white/[0.07] text-foreground"
+                        ? "bg-white/7 text-foreground"
                         : "text-muted hover:text-foreground"
                     }`}
                   >

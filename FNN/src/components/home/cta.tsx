@@ -6,7 +6,7 @@ const CONTRACT_URL = "https://github.com/Armpay/Armpayy/tree/main/contract";
 export function Cta() {
   return (
     <section id="get-started" className="scroll-mt-24 px-4 pb-24 sm:px-6 sm:pb-32">
-      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-linear-to-br from-brand/60 via-white/10 to-accent/50 p-px">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-4xl bg-linear-to-br from-brand/60 via-white/10 to-accent/50 p-px">
         <div className="relative overflow-hidden rounded-[calc(2rem-1px)] bg-surface px-6 py-16 text-center sm:px-12 sm:py-20">
           <div
             aria-hidden

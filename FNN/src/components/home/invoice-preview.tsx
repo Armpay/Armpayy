@@ -61,7 +61,7 @@ export function InvoicePreview() {
           {payers.map((payer) => (
             <li
               key={payer.name}
-              className="flex items-center justify-between rounded-xl px-2 py-2 transition-colors hover:bg-white/[0.03]"
+              className="flex items-center justify-between rounded-xl px-2 py-2 transition-colors hover:bg-white/3"
             >
               <div className="flex items-center gap-3">
                 <span

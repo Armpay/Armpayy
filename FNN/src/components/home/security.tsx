@@ -25,7 +25,7 @@ export function Security() {
         />
 
         <div className="mt-14 grid gap-4 md:grid-cols-2">
-          <div className="rounded-3xl border border-success/20 bg-linear-to-b from-success/[0.06] to-transparent p-6 sm:p-8">
+          <div className="rounded-3xl border border-success/20 bg-linear-to-b from-success/6 to-transparent p-6 sm:p-8">
             <div className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-success/10 text-success">
                 <ShieldIcon />
@@ -62,7 +62,7 @@ export function Security() {
 
         <div
           role="note"
-          className="mt-4 flex items-start gap-3 rounded-2xl border border-warning/20 bg-warning/[0.06] p-4 text-sm"
+          className="mt-4 flex items-start gap-3 rounded-2xl border border-warning/20 bg-warning/6 p-4 text-sm"
         >
           <AlertIcon width={18} height={18} className="mt-px shrink-0 text-warning" />
           <p className="text-foreground/85">

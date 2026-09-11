@@ -162,7 +162,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       {error && (
         <div
           role="alert"
-          className="fixed right-4 bottom-4 left-4 z-[60] flex items-start gap-3 rounded-2xl border border-border bg-surface-strong/95 p-4 text-sm shadow-2xl backdrop-blur sm:left-auto sm:max-w-sm"
+          className="fixed right-4 bottom-4 left-4 z-60 flex items-start gap-3 rounded-2xl border border-border bg-surface-strong/95 p-4 text-sm shadow-2xl backdrop-blur sm:left-auto sm:max-w-sm"
         >
           <span aria-hidden className="mt-1 h-2 w-2 shrink-0 rounded-full bg-red-400" />
           <p className="flex-1 text-foreground">{error}</p>
