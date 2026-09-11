@@ -155,3 +155,6 @@ impl ArmpayContract {
         Ok(contributed)
     }
 }
+
+#[cfg(test)]
+mod test;
