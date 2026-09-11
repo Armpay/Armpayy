@@ -90,3 +90,18 @@ fn test_partial_contribution_is_held_in_escrow() {
     assert_eq!(s.token.balance(&s.alice), 700);
     assert_eq!(s.token.balance(&s.recipient), 0);
 }
+
+#[test]
+fn test_full_funding_pays_recipient() {
+    let s = setup();
+    let id = create_invoice(&s, 500);
+
+    s.client.contribute(&id, &s.alice, &300);
+    assert_eq!(s.client.contribute(&id, &s.bob, &200), 500);
+
+    assert_eq!(s.token.balance(&s.recipient), 500);
+    assert_eq!(s.token.balance(&s.client.address), 0);
+
+    let late = s.client.try_contribute(&id, &s.bob, &1);
+    assert_eq!(late, Err(Ok(Error::InvoiceNotOpen)));
+}
