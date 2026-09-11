@@ -30,3 +30,13 @@ pub struct InvoicePaid {
     pub recipient: Address,
     pub amount: i128,
 }
+
+#[contractevent]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Refunded {
+    #[topic]
+    pub id: u64,
+    #[topic]
+    pub payer: Address,
+    pub amount: i128,
+}
