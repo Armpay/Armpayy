@@ -35,13 +35,13 @@ export function HowItWorks() {
           />
           <ol className="grid gap-10 md:grid-cols-3 md:gap-6">
             {steps.map((step, i) => (
-              <li key={step.title} className="relative flex flex-col md:items-center md:text-center">
+              <li key={step.title} className="relative flex min-w-0 flex-col md:items-center md:text-center">
                 <span className="relative grid h-10 w-10 place-items-center rounded-full border border-brand/40 bg-background font-mono text-sm font-semibold text-brand shadow-[0_0_24px_-6px_var(--brand)]">
                   {i + 1}
                 </span>
                 <h3 className="mt-6 font-medium">{step.title}</h3>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">{step.body}</p>
-                <code className="mt-5 max-w-full overflow-x-auto rounded-xl border border-border bg-surface/80 px-3 py-2 font-mono text-xs whitespace-nowrap text-accent">
+                <code className="mt-5 max-w-full self-start rounded-xl border border-border bg-surface/80 px-3 py-2 font-mono text-xs leading-relaxed text-accent md:self-auto">
                   {step.call}
                 </code>
               </li>

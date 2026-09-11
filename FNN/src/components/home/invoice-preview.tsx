@@ -23,7 +23,7 @@ export function InvoicePreview() {
     >
       <div
         aria-hidden
-        className="absolute -inset-8 -z-10 rounded-full bg-linear-to-tr from-brand/25 via-transparent to-accent/20 blur-3xl"
+        className="absolute -inset-y-8 inset-x-0 -z-10 rounded-full sm:-inset-8 bg-linear-to-tr from-brand/25 via-transparent to-accent/20 blur-3xl"
       />
 
       <div className="rounded-3xl border border-white/10 bg-surface/90 p-6 shadow-2xl shadow-black/50 backdrop-blur-xl">
