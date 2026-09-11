@@ -44,3 +44,20 @@ pub fn write_invoice(env: &Env, id: u64, invoice: &Invoice) {
         .persistent()
         .extend_ttl(&key, BUMP_THRESHOLD, BUMP_AMOUNT);
 }
+
+pub fn read_contribution(env: &Env, id: u64, payer: &Address) -> i128 {
+    let key = DataKey::Contribution(id, payer.clone());
+    env.storage().persistent().get(&key).unwrap_or(0)
+}
+
+pub fn write_contribution(env: &Env, id: u64, payer: &Address, amount: i128) {
+    let key = DataKey::Contribution(id, payer.clone());
+    if amount == 0 {
+        env.storage().persistent().remove(&key);
+    } else {
+        env.storage().persistent().set(&key, &amount);
+        env.storage()
+            .persistent()
+            .extend_ttl(&key, BUMP_THRESHOLD, BUMP_AMOUNT);
+    }
+}
