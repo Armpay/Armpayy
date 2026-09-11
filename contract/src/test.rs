@@ -54,3 +54,11 @@ fn create_invoice(s: &Setup, amount: i128) -> u64 {
         &DEADLINE,
     )
 }
+
+#[test]
+fn test_create_invoice_assigns_sequential_ids() {
+    let s = setup();
+
+    assert_eq!(create_invoice(&s, 500), 0);
+    assert_eq!(create_invoice(&s, 250), 1);
+}
