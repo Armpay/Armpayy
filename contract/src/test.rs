@@ -105,3 +105,22 @@ fn test_full_funding_pays_recipient() {
     let late = s.client.try_contribute(&id, &s.bob, &1);
     assert_eq!(late, Err(Ok(Error::InvoiceNotOpen)));
 }
+
+#[test]
+fn test_refund_after_missed_deadline() {
+    let s = setup();
+    let id = create_invoice(&s, 500);
+    s.client.contribute(&id, &s.alice, &300);
+
+    let early = s.client.try_refund(&id, &s.alice);
+    assert_eq!(early, Err(Ok(Error::DeadlineNotReached)));
+
+    s.env.ledger().set_timestamp(DEADLINE);
+
+    assert_eq!(s.client.refund(&id, &s.alice), 300);
+    assert_eq!(s.token.balance(&s.alice), 1_000);
+    assert_eq!(s.token.balance(&s.client.address), 0);
+
+    let again = s.client.try_refund(&id, &s.alice);
+    assert_eq!(again, Err(Ok(Error::NothingToRefund)));
+}
