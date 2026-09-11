@@ -78,3 +78,15 @@ fn test_create_invoice_rejects_invalid_input() {
         .try_create_invoice(&s.creator, &s.recipient, &token, &500, &START);
     assert_eq!(past_deadline, Err(Ok(Error::InvalidDeadline)));
 }
+
+#[test]
+fn test_partial_contribution_is_held_in_escrow() {
+    let s = setup();
+    let id = create_invoice(&s, 500);
+
+    assert_eq!(s.client.contribute(&id, &s.alice, &300), 300);
+
+    assert_eq!(s.token.balance(&s.client.address), 300);
+    assert_eq!(s.token.balance(&s.alice), 700);
+    assert_eq!(s.token.balance(&s.recipient), 0);
+}
