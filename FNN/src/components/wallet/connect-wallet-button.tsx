@@ -56,7 +56,10 @@ export function ConnectWalletButton({ fullWidth = false, onAction }: ConnectWall
     return (
       <button
         type="button"
-        onClick={() => void connect()}
+        onClick={() => {
+          onAction?.();
+          void connect();
+        }}
         disabled={connecting}
         className={`group relative inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground shadow-[0_0_0_1px_rgb(255_255_255/0.08)_inset,0_8px_24px_-8px_var(--brand)] transition hover:bg-brand-strong disabled:cursor-wait disabled:opacity-80 ${width}`}
       >
