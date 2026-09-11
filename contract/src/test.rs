@@ -62,3 +62,19 @@ fn test_create_invoice_assigns_sequential_ids() {
     assert_eq!(create_invoice(&s, 500), 0);
     assert_eq!(create_invoice(&s, 250), 1);
 }
+
+#[test]
+fn test_create_invoice_rejects_invalid_input() {
+    let s = setup();
+    let token = s.token.address.clone();
+
+    let zero_amount = s
+        .client
+        .try_create_invoice(&s.creator, &s.recipient, &token, &0, &DEADLINE);
+    assert_eq!(zero_amount, Err(Ok(Error::InvalidAmount)));
+
+    let past_deadline = s
+        .client
+        .try_create_invoice(&s.creator, &s.recipient, &token, &500, &START);
+    assert_eq!(past_deadline, Err(Ok(Error::InvalidDeadline)));
+}
