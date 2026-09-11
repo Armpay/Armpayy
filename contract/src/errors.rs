@@ -10,4 +10,6 @@ pub enum Error {
     InvoiceNotOpen = 4,
     DeadlinePassed = 5,
     Overfunded = 6,
+    DeadlineNotReached = 7,
+    NothingToRefund = 8,
 }
