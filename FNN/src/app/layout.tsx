@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
@@ -23,13 +23,19 @@ export const metadata: Metadata = {
     "Create shared invoices where multiple payers fund a share and a Soroban contract pays every recipient — or refunds every payer — fully on-chain.",
 };
 
+export const viewport: Viewport = {
+  themeColor: "#07070b",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="relative isolate min-h-full flex flex-col font-sans">
+        <div aria-hidden className="bg-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[48rem]" />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
