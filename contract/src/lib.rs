@@ -119,4 +119,39 @@ impl ArmpayContract {
 
         Ok(funded)
     }
+
+    /// Returns the payer's full contribution once the deadline has passed
+    /// without the invoice being funded. Returns the refunded amount.
+    pub fn refund(env: Env, invoice_id: u64, payer: Address) -> Result<i128, Error> {
+        payer.require_auth();
+
+        let mut invoice = storage::read_invoice(&env, invoice_id).ok_or(Error::InvoiceNotFound)?;
+        if invoice.status != InvoiceStatus::Open {
+            return Err(Error::InvoiceNotOpen);
+        }
+        if env.ledger().timestamp() < invoice.deadline {
+            return Err(Error::DeadlineNotReached);
+        }
+        let contributed = storage::read_contribution(&env, invoice_id, &payer);
+        if contributed == 0 {
+            return Err(Error::NothingToRefund);
+        }
+
+        storage::write_contribution(&env, invoice_id, &payer, 0);
+        invoice.funded -= contributed;
+        storage::write_invoice(&env, invoice_id, &invoice);
+        storage::extend_instance(&env);
+
+        let token = token::Client::new(&env, &invoice.token);
+        token.transfer(&env.current_contract_address(), &payer, &contributed);
+
+        events::Refunded {
+            id: invoice_id,
+            payer,
+            amount: contributed,
+        }
+        .publish(&env);
+
+        Ok(contributed)
+    }
 }
