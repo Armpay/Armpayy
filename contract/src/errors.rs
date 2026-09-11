@@ -6,4 +6,8 @@ use soroban_sdk::contracterror;
 pub enum Error {
     InvalidAmount = 1,
     InvalidDeadline = 2,
+    InvoiceNotFound = 3,
+    InvoiceNotOpen = 4,
+    DeadlinePassed = 5,
+    Overfunded = 6,
 }
